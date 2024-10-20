@@ -16,25 +16,7 @@ public class TestAccess {
 
     public static void nettyStart() throws InterruptedException {
         // server start
-        Thread.ofVirtual().unstarted(() -> {
-            try {
-                new MyServer().bind(8122);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }).start();
-        // client start
-        Thread.ofVirtual().start(() -> {
-            String id = "C-" + 0;
-            try {
-                initClient(id, id);
-                latch.countDown();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
-        latch.await();
-        manualSend();
+
     }
 
     /**
